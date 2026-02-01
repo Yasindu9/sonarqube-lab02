@@ -29,19 +29,17 @@ jobs:
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
-          restore-keys: |
-            ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
       - name: Build with Maven
         run: mvn -B verify
 
       - name: SonarCloud Scan
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B verify sonar:sonar \
-            -Dsonar.projectKey=rathnasirihhyic21417ir_lab02 \
-            -Dsonar.organization=rathnasirihhyic21417ir \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${SONAR_TOKEN} \
-            -Dsonar.scm.disabled=true
+          mvn sonar:sonar \
+          -Dsonar.projectKey=rathnasirihhyic214171r_lab02 \
+          -Dsonar.organization=RathnasiriHHYIC214171R \
+          -Dsonar.host.url=https://sonarcloud.io
