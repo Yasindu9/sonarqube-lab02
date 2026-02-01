@@ -6,9 +6,8 @@ public class App {
 
         Calculator calc = new Calculator();
 
-        // Call the worse duplicated method version
-// System.out.println removed (Sonar issue fix)
-String result = String.valueOf(calc.calculate(10, 5, "add-again"));
+        // Print the calculation result (no unused variable, no useless assignment)
+        System.out.println(calc.calculate(10, 5, "add-again"));
 
         UserService service = new UserService();
 
